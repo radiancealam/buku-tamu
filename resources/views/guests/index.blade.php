@@ -33,7 +33,6 @@
         <div class="row">
             <div class="col-10">
                 <h1 class="mt-3">Daftar Tamu UPT TIK UNS</h1>
-
                 <a href="/guests/create" class="btn btn-primary my-3">Tambah Data Tamu</a>
                 @if (session('status'))
                     <div class="alert alert-success">
