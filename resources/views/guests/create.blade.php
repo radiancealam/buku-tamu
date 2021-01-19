@@ -1,12 +1,12 @@
 @extends('layout.main')
 
-@section('title', 'Form Tambah Tamu')
+@section('title', 'Form Tambah Data Tamu')
 
 @section('container')
 <div class="container">
     <div class="row">
         <div class="col-8">
-            <h1 class="mt-3">Form Tambah Tamu</h1>
+            <h1 class="mt-3">Form Tambah Data Tamu</h1>
             <form method="post" action="/guests">
                 @csrf
                 <div class="form-group">

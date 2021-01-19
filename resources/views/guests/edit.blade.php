@@ -1,12 +1,12 @@
 @extends('layout.main')
 
-@section('title', 'Form Tambah Tamu')
+@section('title', 'Edit Data Tamu')
 
 @section('container')
 <div class="container">
     <div class="row">
         <div class="col-8">
-            <h1 class="mt-3">Form Tambah Tamu</h1>
+            <h1 class="mt-3">Edit Data Tamu</h1>
             <form method="post" action="/guests/{{$guest->id}}">
                 @method('put')
                 @csrf
