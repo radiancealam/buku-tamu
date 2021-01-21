@@ -37,7 +37,6 @@
         <div class="row">
             <div class="col-10">
                 <h1 class="mt-3">Daftar Tamu UPT TIK UNS</h1>
-<<<<<<< HEAD
 
                 <a class="btn btn-primary my-3" data-toggle="modal" data-target="#modal-tambah">Tambah Data Tamu</a>
 
@@ -95,10 +94,6 @@
                 </div>
                 {{-- END MODAL TAMBAH DATA --}}
 
-
-=======
-
->>>>>>> e59fabbb8f3be604553d2ba796fff70cec23ebe6
                 @if (session('status'))
                     <div class="alert alert-success">
                         {{ session('status') }}
@@ -122,6 +117,7 @@
                             <td>{{$guest->nama}}</td>
                             <td>{{$guest->unit}}</td>
                             <td>
+                              {{-- tombol detail --}}
                                 <a id="detail" class="btn btn-primary" data-toggle="modal" data-target="#modal-detail"
                                 data-nama = "{{$guest->nama}}"
                                 data-unit = "{{$guest->unit}}"
@@ -129,7 +125,14 @@
                                 data-description = "{{$guest->description}}"
                                 >Details</a>
 
-                                <a href="" class="btn btn-success">Edit</a>
+                                {{-- tombol edit --}}
+                                <a id="edit" class="btn btn-primary" data-toggle="modal" data-target="#modal-edit"
+                                data-nama = "{{$guest->nama}}"
+                                data-unit = "{{$guest->unit}}"
+                                data-description = "{{$guest->description}}"
+                                >Edit</a>
+
+                                {{-- tombol hapus --}}
                                 <a href="" class="btn btn-danger">Hapus</a>
                             </td>
                         </tr>
@@ -157,6 +160,7 @@
                           </div>
                         </div>
                         {{-- END MODAL DETAIL --}}
+
 
                         @endforeach
                     </tbody>
