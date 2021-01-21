@@ -27,7 +27,7 @@ class GuestsController extends Controller
      */
     public function create()
     {
-        //
+        return view('guests.create');
     }
 
     /**
@@ -67,7 +67,7 @@ class GuestsController extends Controller
      */
     public function edit(Guest $guest)
     {
-        //
+        return view('guests.edit', compact('guest'));
     }
 
     /**
