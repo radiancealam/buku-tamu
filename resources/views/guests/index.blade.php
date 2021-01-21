@@ -190,8 +190,8 @@
                                 </button>
                               </div>
                               <div class="modal-body">
-                                <form method="post" action="/guests">
-                                {{-- <form method="post" action="{{ action([GuestsController::class, 'store']) }}"> --}}
+                                <form method="post" action="/guests/{{$guest->id}}">
+                                  @method('put')
                                   @csrf
                                   <div class="form-group">
                                     <label for="edit-nama">Nama</label>
@@ -221,7 +221,7 @@
                                     @enderror
                                   </div>
                                   <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Tambah Data</button>
+                                    <button type="submit" class="btn btn-primary">Update Data</button>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                   </div>
                                 </form>
