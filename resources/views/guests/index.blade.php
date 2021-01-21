@@ -37,11 +37,7 @@
         <div class="row">
             <div class="col-10">
                 <h1 class="mt-3">Daftar Tamu UPT TIK UNS</h1>
-<<<<<<< HEAD
-
                 <a class="btn btn-primary my-3" data-toggle="modal" data-target="#modal-tambah">Tambah Data Tamu</a>
-
-
                 {{-- MODAL TAMBAH DATA --}}
                 <div class="modal fade" id="modal-tambah" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
@@ -56,7 +52,6 @@
                         <form method="post" action="/guests">
                         {{-- <form method="post" action="{{ action([GuestsController::class, 'store']) }}"> --}}
                           @csrf
-
                           <div class="form-group">
                             <label for="nama">Nama</label>
                             <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" placeholder="Masukkan nama" name="nama" value="{{old('nama')}}">
@@ -94,15 +89,27 @@
                   </div>
                 </div>
                 {{-- END MODAL TAMBAH DATA --}}
-
-
-=======
-
->>>>>>> e59fabbb8f3be604553d2ba796fff70cec23ebe6
-                @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
+                @if (session('tambah'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('tambah') }}
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
+                @elseif (session('update'))
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{ session('update') }}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @elseif (session('hapus'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('hapus') }}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 @endif
                 <table class="table display" id="guest" style="width:100%">
                     <thead class="thead-dark">
@@ -130,7 +137,11 @@
                                 >Details</a>
 
                                 <a href="" class="btn btn-success">Edit</a>
-                                <a href="" class="btn btn-danger">Hapus</a>
+                                <form action="/guests/{{$guest->id}}" method="post" class="d-inline" onsubmit="return confirm('Yakin hapus data?')">
+                                  @method('delete')
+                                  @csrf
+                                  <button type="submit" class="btn btn-danger">Hapus</button>
+                                </form>
                             </td>
                         </tr>
 
@@ -165,6 +176,10 @@
             </div>
 
           </div>
+
+<script>
+  $('.alert').alert('')
+</script>
 
 {{-- DATATABLE --}}
 <script>
