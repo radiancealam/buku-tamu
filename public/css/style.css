@@ -1,0 +1,26 @@
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.title-book{
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.centered{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.book-img{
+    position:relative;
+    background-position:center;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-image:url('../images/book.jpg');
+    min-height:350px;
+    z-index: 0;
+}
