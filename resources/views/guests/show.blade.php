@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row">
         <div class="col-6">
-            <h1 class="mt-3">Detail Mahasiswa</h1>
+            <h1 class="mt-3">Detail Tamu</h1>
             <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">{{$guest->nama}}</h5>

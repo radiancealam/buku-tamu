@@ -15,7 +15,7 @@
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 
-    <title>Daftar Tamu UPT TIK UNS)</title>
+    <title>Daftar Tamu UPT TIK UNS</title>
   </head>
   <body>
     
@@ -37,6 +37,7 @@
         <div class="row">
             <div class="col-10">
                 <h1 class="mt-3">Daftar Tamu UPT TIK UNS</h1>
+<<<<<<< HEAD
 
                 <a class="btn btn-primary my-3" data-toggle="modal" data-target="#modal-tambah">Tambah Data Tamu</a>
 
@@ -95,6 +96,9 @@
                 {{-- END MODAL TAMBAH DATA --}}
 
 
+=======
+
+>>>>>>> e59fabbb8f3be604553d2ba796fff70cec23ebe6
                 @if (session('status'))
                     <div class="alert alert-success">
                         {{ session('status') }}
