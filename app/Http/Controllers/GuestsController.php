@@ -45,7 +45,7 @@ class GuestsController extends Controller
         ]);
 
         Guest::create($request->all());
-        return redirect('/guests')->with('status', 'Data tamu berhasil ditambahkan');
+        return redirect('/guests')->with('tambah', 'Data tamu berhasil ditambahkan');
     }
 
     /**
@@ -92,7 +92,7 @@ class GuestsController extends Controller
                 'description' => $request->description
             ]);
 
-        return redirect('/guests')->with('status', 'Data tamu berhasil diupdate');
+        return redirect('/guests')->with('update', 'Data tamu berhasil diupdate');
     }
 
     /**
@@ -104,6 +104,6 @@ class GuestsController extends Controller
     public function destroy(Guest $guest)
     {
         Guest::destroy($guest->id);
-        return redirect('/guests')->with('status', 'Data tamu berhasil dihapus');
+        return redirect('/guests')->with('hapus', 'Data tamu berhasil dihapus');
     }
 }

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
@@ -37,10 +37,11 @@
         <div class="row">
             <div class="col-10">
                 <h1 class="mt-3">Daftar Tamu UPT TIK UNS</h1>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 65f5bb270abb3ec911297d47ac9116480f3dd41d
                 <a class="btn btn-primary my-3" data-toggle="modal" data-target="#modal-tambah">Tambah Data Tamu</a>
-
-
                 {{-- MODAL TAMBAH DATA --}}
                 <div class="modal fade" id="modal-tambah" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
@@ -55,7 +56,6 @@
                         <form method="post" action="/guests">
                         {{-- <form method="post" action="{{ action([GuestsController::class, 'store']) }}"> --}}
                           @csrf
-
                           <div class="form-group">
                             <label for="nama">Nama</label>
                             <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" placeholder="Masukkan nama" name="nama" value="{{old('nama')}}">
@@ -93,11 +93,34 @@
                   </div>
                 </div>
                 {{-- END MODAL TAMBAH DATA --}}
+<<<<<<< HEAD
 
                 @if (session('status'))
                     <div class="alert alert-success">
                         {{ session('status') }}
+=======
+                @if (session('tambah'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('tambah') }}
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+>>>>>>> 65f5bb270abb3ec911297d47ac9116480f3dd41d
                     </div>
+                @elseif (session('update'))
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{ session('update') }}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @elseif (session('hapus'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('hapus') }}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 @endif
                 <table class="table display" id="guest" style="width:100%">
                     <thead class="thead-dark">
@@ -125,6 +148,7 @@
                                 data-description = "{{$guest->description}}"
                                 >Details</a>
 
+<<<<<<< HEAD
                                 {{-- tombol edit --}}
                                 <a id="edit" class="btn btn-primary" data-toggle="modal" data-target="#modal-edit"
                                 data-nama = "{{$guest->nama}}"
@@ -134,6 +158,14 @@
 
                                 {{-- tombol hapus --}}
                                 <a href="" class="btn btn-danger">Hapus</a>
+=======
+                                <a href="" class="btn btn-success">Edit</a>
+                                <form action="/guests/{{$guest->id}}" method="post" class="d-inline" onsubmit="return confirm('Yakin hapus data?')">
+                                  @method('delete')
+                                  @csrf
+                                  <button type="submit" class="btn btn-danger">Hapus</button>
+                                </form>
+>>>>>>> 65f5bb270abb3ec911297d47ac9116480f3dd41d
                             </td>
                         </tr>
 
@@ -169,6 +201,10 @@
             </div>
 
           </div>
+
+<script>
+  $('.alert').alert('')
+</script>
 
 {{-- DATATABLE --}}
 <script>
