@@ -67,7 +67,7 @@ class GuestsController extends Controller
      */
     public function edit(Guest $guest)
     {
-        return view('guests.edit', compact('guest'));
+        // return view('guests.edit', compact('guest'));
     }
 
     /**
@@ -80,16 +80,16 @@ class GuestsController extends Controller
     public function update(Request $request, Guest $guest)
     {
         $request->validate([
-            'nama' => 'required',
-            'unit' => 'required',
-            'description' => 'required'
+            'enama' => 'required',
+            'eunit' => 'required',
+            'edescription' => 'required'
         ]);
 
         Guest::where('id', $guest->id)
             ->update([
-                'nama' => $request->nama,
-                'unit' => $request->unit,
-                'description' => $request->description
+                'nama' => $request->enama,
+                'unit' => $request->eunit,
+                'description' => $request->edescription
             ]);
 
         return redirect('/guests')->with('update', 'Data tamu berhasil diupdate');
