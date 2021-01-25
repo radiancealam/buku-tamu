@@ -156,6 +156,8 @@
                             </td>
                         </tr>
 
+                        @endforeach
+
                         {{-- MODAL DETAIL --}}
                         <div class="modal fade" id="modal-detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog">
@@ -237,7 +239,7 @@
                         </div>
                         {{-- END MODAL EDIT DATA --}}
                         
-                        @endforeach
+                        
                     </tbody>
                 </table>
 
