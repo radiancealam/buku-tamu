@@ -14,10 +14,12 @@ class GuestsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
         $guests = Guest::all();
-        return view('guests.index', ['guests' => $guests]);
+        return view('index', ['guests' => $guests]);
     }
 
     /**
@@ -27,7 +29,7 @@ class GuestsController extends Controller
      */
     public function create()
     {
-        return view('guests.create');
+        //
     }
 
     /**
@@ -45,7 +47,7 @@ class GuestsController extends Controller
         ]);
 
         Guest::create($request->all());
-        return redirect('/guests')->with('tambah', 'Data tamu berhasil ditambahkan');
+        return redirect('/')->with('tambah', 'Data tamu berhasil ditambahkan');
     }
 
     /**
@@ -56,7 +58,7 @@ class GuestsController extends Controller
      */
     public function show(Guest $guest)
     {
-        return view('guests.show', compact('guest'));
+        //
     }
 
     /**
@@ -67,7 +69,7 @@ class GuestsController extends Controller
      */
     public function edit(Guest $guest)
     {
-        // return view('guests.edit', compact('guest'));
+        // 
     }
 
     /**
@@ -92,7 +94,7 @@ class GuestsController extends Controller
                 'description' => $request->edescription
             ]);
 
-        return redirect('/guests')->with('update', 'Data tamu berhasil diupdate');
+        return redirect('/')->with('update', 'Data tamu berhasil diupdate');
     }
 
     /**
@@ -104,6 +106,6 @@ class GuestsController extends Controller
     public function destroy(Guest $guest)
     {
         Guest::destroy($guest->id);
-        return redirect('/guests')->with('hapus', 'Data tamu berhasil dihapus');
+        return redirect('/')->with('hapus', 'Data tamu berhasil dihapus');
     }
 }

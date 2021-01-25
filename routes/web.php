@@ -15,10 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PagesController::class, 'home']);
-Route::resource('/guests', GuestsController::class);
-
-// Route::get('/guests', [GuestsController::class, 'index']);
-// Route::post('/guests', [GuestsController::class, 'store']);
-// Route::delete('/guests/{guest}', [GuestsController::class, 'destroy']);
-// Route::put('/guests/{guest}', [GuestsController::class, 'update']);
+Route::get('/', [GuestsController::class, 'index']);
+Route::post('/', [GuestsController::class, 'store']);
+Route::put('/{guest}', [GuestsController::class, 'update']);
+Route::delete('/{guest}', [GuestsController::class, 'destroy']);
