@@ -37,7 +37,7 @@
                     </div>
                   @enderror
                 </div>
-                <button type="submit" class="btn btn-primary">Ubah Data</button>
+                <button type="submit" class="btn btn-warning">Ubah Data</button>
               </form>
         </div>
     </div>
