@@ -1,8 +1,8 @@
 @extends('layout.main') 
 @push('scripts') 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script> 
+<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
 @endpush    
 @section('title', 'Daftar Tamu UPT TIK UNS')
 @section('container')
@@ -154,11 +154,145 @@
                     </div>
                   @enderror
                 </div>
+<<<<<<< HEAD
                 <div class="modal-footer">
                   <button type="submit" class="btn btn-primary">Update Data</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
               </form>
+=======
+                @endif
+                <table class="table display" id="guest-datatable" style="width:100%">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Tanggal</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Unit</th>
+                            <th scope="col">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($guests as $guest)
+                        <tr>
+                            <th scope="row">{{$loop->iteration}}</th>
+                            <td>{{$guest->created_at}}</td>
+                            <td>{{$guest->nama}}</td>
+                            <td>{{$guest->unit}}</td>
+                            <td>
+                              {{-- tombol detail --}}
+                                <a id="detail" class="btn btn-primary" data-toggle="modal" data-target="#modal-detail"
+                                data-nama = "{{$guest->nama}}"
+                                data-unit = "{{$guest->unit}}"
+                                data-tanggal = "{{$guest->created_at}}"
+                                data-description = "{{$guest->description}}"
+                                >Details</a>
+
+                                {{-- tombol edit --}}
+                                <a id="edit" class="btn btn-success edit" data-toggle="modal" data-target="#modal-edit"
+                                data-id = "{{ $guest->id }}"
+                                data-nama = "{{$guest->nama}}"
+                                data-unit = "{{$guest->unit}}"
+                                data-description = "{{$guest->description}}">Edit</a>
+
+                                {{-- tombol hapus --}}
+                                <form action="/guests/{{$guest->id}}" method="post" class="d-inline" onsubmit="return confirm('Yakin hapus data?')">
+                                  @method('delete')
+                                  @csrf
+                                  <button type="submit" class="btn btn-danger">Hapus</button>
+                                </form>
+                            </td>
+                        </tr>
+
+                        {{-- MODAL DETAIL --}}
+                        <div class="modal fade" id="modal-detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Detail Buku Tamu</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <h5 id="detail-nama"></h5>
+                                <h6 id="detail-unit" class="mb-2 text-muted"></h6>
+                                <p id="detail-tanggal"></p>
+                                <p id="detail-description"></p>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        {{-- END MODAL DETAIL --}}
+                        
+                        {{-- MODAL EDIT DATA --}}
+                        <div class="modal fade" id="modal-edit" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="tambahModalLabel">Form Tambah Tamu</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <form action="/guests" method="post" id="editForm">
+                                  @method('PUT')
+                                  @csrf
+                                  
+                                  <div class="form-group">
+                                    <label for="enama">Nama</label>
+                                    <input type="text" class="form-control @error('nama') is-invalid @enderror" id="enama" placeholder="Masukkan nama" name="enama">
+                                    @error('enama')
+                                      <div class="invalid-feedback">
+                                        {{ $message }}
+                                      </div>
+                                    @enderror
+                                  </div>
+        
+                                  <div class="form-group">
+                                    <label for="eunit">Unit/Instansi</label>
+                                    <input type="text" class="form-control @error('eunit') is-invalid @enderror" id="eunit" placeholder="Masukkan unit" name="eunit">
+                                    @error('eunit')
+                                      <div class="invalid-feedback">
+                                        {{ $message }}
+                                      </div>
+                                    @enderror
+                                  </div>
+        
+                                  <div class="form-group">
+                                    <label for="edescription">Keterangan</label>
+                                    <input type="text" class="form-control @error('edescription') is-invalid @enderror" id="edescription" placeholder="Keterangan kegiatan" name="edescription">
+                                    @error('edescription')
+                                      <div class="invalid-feedback">
+                                        {{ $message }}
+                                      </div>
+                                    @enderror
+                                  </div>
+        
+                                  <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary">Update Data</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  </div>
+        
+                                </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        {{-- END MODAL EDIT DATA --}}
+                        
+                        @endforeach
+                    </tbody>
+                </table>
+
+
+
+              </div>
+>>>>>>> 5ffa86b53eb288be59f9091af8bf6e7fbc7731a1
             </div>
           </div>
         </div>
@@ -219,7 +353,7 @@
 {{-- DATATABLE --}}
 <script>
     $(document).ready(function() {
-    $('#guest').DataTable();
+    $('#guest-datatable').DataTable();
 } );
 </script>
 
@@ -237,7 +371,6 @@
       $('#detail-unit').text(unit);
       $('#detail-tanggal').text(tanggal);
       $('#detail-description').text(description);
-
     })
   });
 </script>
@@ -247,13 +380,16 @@
 {{-- <script>
   $(document).ready(function(){
     $(document).on('click', '#edit', function(){
+      var id = $(this).data('id');
       var nama = $(this).data('nama');
       var unit = $(this).data('unit');
       var description = $(this).data('description');
 
-      $('#edit-nama').val(nama);
-      $('#edit-unit').val(unit);
-      $('#edit-description').val(description);
+      $('#enama').val(nama);
+      $('#eunit').val(unit);
+      $('#edescription').val(description);
+
+      $('#editForm').attr('action', '/guests/'+id);
 
     })
   });
