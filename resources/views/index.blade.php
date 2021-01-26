@@ -67,6 +67,26 @@
                               </div>
                             @enderror
                           </div>
+                          <div class="form-group">
+                            <label for="nip">NIP / NIM</label>
+                            <input type="text" class="form-control @error('nip') is-invalid @enderror" id="nip" placeholder="Masukkan nip" name="nip" value="{{old('nip')}}">
+                            @error('nip')
+                              <div class="invalid-feedback">
+                                {{ $message }}
+                              </div>
+                            @enderror
+                          </div>
+                          <div class="form-group">
+                            <label for="phone">No. HP / Telepon</label>
+                            <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" placeholder="Masukkan phone" name="phone" value="{{old('phone')}}">
+                            @error('phone')
+                              <div class="invalid-feedback">
+                                {{ $message }}
+                              </div>
+                            @enderror
+                          </div>
+
+                          {{-- BUTTON --}}
                           <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Tambah Data</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -107,6 +127,7 @@
                             <th scope="col">Tanggal</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Unit</th>
+                            <th scope="col">No. Telepon</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
@@ -117,6 +138,7 @@
                             <td>{{$guest->created_at}}</td>
                             <td>{{$guest->nama}}</td>
                             <td>{{$guest->unit}}</td>
+                            <td>{{$guest->phone}}</td>
                             <td>
                               {{-- tombol detail --}}
                                 <a id="detail" class="btn btn-primary" data-toggle="modal" data-target="#modal-detail"
@@ -124,14 +146,19 @@
                                 data-unit = "{{$guest->unit}}"
                                 data-tanggal = "{{$guest->created_at}}"
                                 data-description = "{{$guest->description}}"
-                                >Details</a>
+                                data-nip = "{{$guest->nip}}"
+                                data-phone = "{{$guest->phone}}"
+                                >Detail</a>
 
                                 {{-- tombol edit --}}
                                 <a id="edit" class="btn btn-success edit" data-toggle="modal" data-target="#modal-edit"
                                 data-id = "{{ $guest->id }}"
                                 data-nama = "{{$guest->nama}}"
                                 data-unit = "{{$guest->unit}}"
-                                data-description = "{{$guest->description}}">Edit</a>
+                                data-description = "{{$guest->description}}"
+                                data-nip = "{{$guest->nip}}"
+                                data-phone = "{{$guest->phone}}"
+                                >Edit</a>
 
                                 {{-- tombol hapus --}}
                                 <form action="/{{$guest->id}}" method="post" class="d-inline" onsubmit="return confirm('Yakin hapus data?')">
@@ -154,8 +181,15 @@
                               </div>
                               <div class="modal-body">
                                 <h5 id="detail-nama"></h5>
-                                <h6 id="detail-unit" class="mb-2 text-muted"></h6>
+                                <h6 class="mb-2 text-muted">Unit</h6>
+                                <p id="detail-unit"></p>
+                                <h6 class="mb-2 text-muted">Tanggal</h6>
                                 <p id="detail-tanggal"></p>
+                                <h6 class="mb-2 text-muted">NIP / NIM</h6>
+                                <p id="detail-nip"></p>
+                                <h6 class="mb-2 text-muted">No. Telepon / HP</h6>
+                                <p id="detail-phone"></p>
+                                <h6 class="mb-2 text-muted">Keperluan</h6>
                                 <p id="detail-description"></p>
                               </div>
                               <div class="modal-footer">
@@ -183,8 +217,18 @@
                                   
                                   <div class="form-group">
                                     <label for="enama">Nama</label>
-                                    <input type="text" class="form-control @error('nama') is-invalid @enderror" id="enama" placeholder="Masukkan nama" name="enama">
+                                    <input type="text" class="form-control @error('enama') is-invalid @enderror" id="enama" placeholder="Masukkan nama" name="enama">
                                     @error('enama')
+                                      <div class="invalid-feedback">
+                                        {{ $message }}
+                                      </div>
+                                    @enderror
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label for="enip">NIP / NIM</label>
+                                    <input type="text" class="form-control @error('enip') is-invalid @enderror" id="enip" placeholder="Masukkan nama" name="enip">
+                                    @error('enip')
                                       <div class="invalid-feedback">
                                         {{ $message }}
                                       </div>
@@ -205,6 +249,16 @@
                                     <label for="edescription">Keterangan</label>
                                     <input type="text" class="form-control @error('edescription') is-invalid @enderror" id="edescription" placeholder="Keterangan kegiatan" name="edescription">
                                     @error('edescription')
+                                      <div class="invalid-feedback">
+                                        {{ $message }}
+                                      </div>
+                                    @enderror
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label for="ephone">No. HP / Telepon</label>
+                                    <input type="text" class="form-control @error('ephone') is-invalid @enderror" id="ephone" placeholder="Masukkan nama" name="ephone">
+                                    @error('ephone')
                                       <div class="invalid-feedback">
                                         {{ $message }}
                                       </div>
@@ -254,11 +308,15 @@
       var unit = $(this).data('unit');
       var tanggal = $(this).data('tanggal');
       var description = $(this).data('description');
+      var nip = $(this).data('nip');
+      var phone = $(this).data('phone');
 
       $('#detail-nama').text(nama);
       $('#detail-unit').text(unit);
       $('#detail-tanggal').text(tanggal);
       $('#detail-description').text(description);
+      $('#detail-nip').text(nip);
+      $('#detail-phone').text(phone);
     })
   });
 </script>
@@ -271,10 +329,14 @@
       var nama = $(this).data('nama');
       var unit = $(this).data('unit');
       var description = $(this).data('description');
+      var nip = $(this).data('nip');
+      var phone = $(this).data('phone');
 
       $('#enama').val(nama);
       $('#eunit').val(unit);
       $('#edescription').val(description);
+      $('#enip').val(nip);
+      $('#ephone').val(phone);
 
       // Tambahkan ID di action
       $('#editForm').attr('action', '/'+id);

@@ -43,7 +43,9 @@ class GuestsController extends Controller
         $request->validate([
             'nama' => 'required',
             'unit' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'nip' => 'required',
+            'phone' => 'required'
         ]);
 
         Guest::create($request->all());
@@ -84,14 +86,18 @@ class GuestsController extends Controller
         $request->validate([
             'enama' => 'required',
             'eunit' => 'required',
-            'edescription' => 'required'
+            'edescription' => 'required',
+            'enip' => 'required',
+            'ephone' => 'required'
         ]);
 
         Guest::where('id', $guest->id)
             ->update([
                 'nama' => $request->enama,
                 'unit' => $request->eunit,
-                'description' => $request->edescription
+                'description' => $request->edescription,
+                'nip' => $request->enip,
+                'phone' => $request->ephone
             ]);
 
         return redirect('/')->with('update', 'Data tamu berhasil diupdate');
