@@ -50,24 +50,6 @@
                             @enderror
                           </div>
                           <div class="form-group">
-                            <label for="unit">Unit/Instansi</label>
-                            <input type="text" class="form-control @error('unit') is-invalid @enderror" id="unit" placeholder="Masukkan unit" name="unit" value="{{old('unit')}}">
-                            @error('unit')
-                              <div class="invalid-feedback">
-                                {{ $message }}
-                              </div>
-                            @enderror
-                          </div>
-                          <div class="form-group">
-                            <label for="description">Keterangan</label>
-                            <input type="text" class="form-control @error('description') is-invalid @enderror" id="description" placeholder="Keterangan kegiatan" name="description" value="{{old('description')}}">
-                            @error('description')
-                              <div class="invalid-feedback">
-                                {{ $message }}
-                              </div>
-                            @enderror
-                          </div>
-                          <div class="form-group">
                             <label for="nip">NIP / NIM</label>
                             <input type="text" class="form-control @error('nip') is-invalid @enderror" id="nip" placeholder="Masukkan nip" name="nip" value="{{old('nip')}}">
                             @error('nip')
@@ -77,9 +59,27 @@
                             @enderror
                           </div>
                           <div class="form-group">
+                            <label for="unit">Unit/Instansi</label>
+                            <input type="text" class="form-control @error('unit') is-invalid @enderror" id="unit" placeholder="Masukkan unit" name="unit" value="{{old('unit')}}">
+                            @error('unit')
+                              <div class="invalid-feedback">
+                                {{ $message }}
+                              </div>
+                            @enderror
+                          </div>
+                          <div class="form-group">
                             <label for="phone">No. HP / Telepon</label>
                             <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" placeholder="Masukkan phone" name="phone" value="{{old('phone')}}">
                             @error('phone')
+                              <div class="invalid-feedback">
+                                {{ $message }}
+                              </div>
+                            @enderror
+                          </div>
+                          <div class="form-group">
+                            <label for="description">Keterangan</label>
+                            <input type="text" class="form-control @error('description') is-invalid @enderror" id="description" placeholder="Keterangan kegiatan" name="description" value="{{old('description')}}">
+                            @error('description')
                               <div class="invalid-feedback">
                                 {{ $message }}
                               </div>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddNipAndPhoneToGuests extends Migration
+class CreateGuestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,15 @@ class AddNipAndPhoneToGuests extends Migration
      */
     public function up()
     {
-        Schema::table('guests', function (Blueprint $table) {
+        Schema::create('guests', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama');
             $table->string('nip')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('unit');
+            $table->string('phone');
+            $table->text('description');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -26,8 +32,6 @@ class AddNipAndPhoneToGuests extends Migration
      */
     public function down()
     {
-        Schema::table('guests', function (Blueprint $table) {
-            $table->dropColumn(['nip',  'phone']);
-        });
+        Schema::dropIfExists('guests');
     }
 }
