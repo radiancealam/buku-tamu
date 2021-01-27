@@ -214,7 +214,6 @@
                                 <form action="/" method="post" id="editForm">
                                   @method('PUT')
                                   @csrf
-                                  
                                   <div class="form-group">
                                     <label for="enama">Nama</label>
                                     <input type="text" class="form-control @error('enama') is-invalid @enderror" id="enama" placeholder="Masukkan nama" name="enama">
@@ -224,7 +223,6 @@
                                       </div>
                                     @enderror
                                   </div>
-
                                   <div class="form-group">
                                     <label for="enip">NIP / NIM</label>
                                     <input type="text" class="form-control @error('enip') is-invalid @enderror" id="enip" placeholder="Masukkan nama" name="enip">
@@ -233,8 +231,7 @@
                                         {{ $message }}
                                       </div>
                                     @enderror
-                                  </div>
-        
+                                  </div>       
                                   <div class="form-group">
                                     <label for="eunit">Unit/Instansi</label>
                                     <input type="text" class="form-control @error('eunit') is-invalid @enderror" id="eunit" placeholder="Masukkan unit" name="eunit">
@@ -244,7 +241,15 @@
                                       </div>
                                     @enderror
                                   </div>
-        
+                                  <div class="form-group">
+                                    <label for="ephone">No. HP / Telepon</label>
+                                    <input type="text" class="form-control @error('ephone') is-invalid @enderror" id="ephone" placeholder="Masukkan nama" name="ephone">
+                                    @error('ephone')
+                                      <div class="invalid-feedback">
+                                        {{ $message }}
+                                      </div>
+                                    @enderror
+                                  </div>
                                   <div class="form-group">
                                     <label for="edescription">Keterangan</label>
                                     <input type="text" class="form-control @error('edescription') is-invalid @enderror" id="edescription" placeholder="Keterangan kegiatan" name="edescription">
@@ -255,16 +260,6 @@
                                     @enderror
                                   </div>
 
-                                  <div class="form-group">
-                                    <label for="ephone">No. HP / Telepon</label>
-                                    <input type="text" class="form-control @error('ephone') is-invalid @enderror" id="ephone" placeholder="Masukkan nama" name="ephone">
-                                    @error('ephone')
-                                      <div class="invalid-feedback">
-                                        {{ $message }}
-                                      </div>
-                                    @enderror
-                                  </div>
-        
                                   <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary">Update Data</button>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
