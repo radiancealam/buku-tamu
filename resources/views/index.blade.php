@@ -26,6 +26,7 @@
                 <h1 class="mt-3 text-center">Daftar Tamu UPT TIK UNS</h1>
 
                 <a class="btn btn-primary my-3" data-toggle="modal" data-target="#modal-tambah">Tambah Data Tamu</a>
+                <a href="{{url('/export-data')}}" class="btn btn-warning">Export Data Tamu</a>
                 
                 {{-- MODAL TAMBAH DATA --}}
                 <div class="modal fade" id="modal-tambah" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">

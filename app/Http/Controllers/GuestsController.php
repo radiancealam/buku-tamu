@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\GuestsExport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Guest;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 class GuestsController extends Controller
 {
@@ -113,5 +114,10 @@ class GuestsController extends Controller
     {
         Guest::destroy($guest->id);
         return redirect('/')->with('hapus', 'Data tamu berhasil dihapus');
+    }
+
+    public function exportData()
+    {
+        return Excel::download(new GuestsExport, 'data-tamu.xlsx');
     }
 }

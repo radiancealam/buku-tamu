@@ -19,3 +19,4 @@ Route::get('/', [GuestsController::class, 'index']);
 Route::post('/', [GuestsController::class, 'store']);
 Route::put('/{guest}', [GuestsController::class, 'update']);
 Route::delete('/{guest}', [GuestsController::class, 'destroy']);
+Route::get('/export-data', [GuestsController::class, 'exportData']);
