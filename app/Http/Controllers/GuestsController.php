@@ -118,6 +118,6 @@ class GuestsController extends Controller
 
     public function exportData()
     {
-        return Excel::download(new GuestsExport, 'data-tamu.xlsx');
+        return Excel::download(new GuestsExport, 'data-tamu-' . date('d-m-Y') . '.xlsx');
     }
 }
