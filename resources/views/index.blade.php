@@ -281,10 +281,6 @@
     </div>
   </div>
 
-  <footer class="text-center pb-3 fixed-bottom">
-    <p>&copy; Copyright UPT TIK UNS <?= date('Y'); ?></p>
-  </footer>     
-
 {{-- DATATABLE --}}
 <script>
     $(document).ready(function() {
