@@ -15,7 +15,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
-    <script src="{{asset('/js/sweetalert2.all.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"></script>
     <style>
       body {
         background-image: url("{{asset('/img/symphony.png')}}");
@@ -29,8 +29,8 @@
     <div class="row">
       <div class="col-12">
         <h1 class="mt-3 text-center">Daftar Tamu UPT TIK UNS</h1>
-        <a class="btn btn-primary my-3" data-toggle="modal" data-target="#modal-tambah">Tambah Data Tamu</a>
-        <a href="{{url('/export-data')}}" class="btn btn-warning">Export Data Tamu</a>
+        <a class="btn btn-primary my-3" data-toggle="modal" data-target="#modal-tambah"><i class="fas fa-user-plus"></i></a>
+        <a href="{{url('/export-data')}}" class="btn btn-warning"><i class="fas fa-file-export"></i></a>
         {{-- MODAL TAMBAH DATA --}}
         <div class="modal fade" id="modal-tambah" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -136,42 +136,42 @@
           </thead>
           <tbody>
               @foreach ($guests as $guest)
-              <tr>
-                  <th scope="row">{{$loop->iteration}}</th>
-                  <td>{{$guest->created_at}}</td>
-                  <td>{{$guest->nama}}</td>
-                  <td>{{$guest->unit}}</td>
-                  <td>{{$guest->phone}}</td>
-                  <td>
-                    {{-- tombol detail --}}
-                      <a id="detail" class="btn btn-primary" data-toggle="modal" data-target="#modal-detail"
-                      data-nama = "{{$guest->nama}}"
-                      data-unit = "{{$guest->unit}}"
-                      data-tanggal = "{{$guest->created_at}}"
-                      data-description = "{{$guest->description}}"
-                      data-nip = "{{$guest->nip}}"
-                      data-phone = "{{$guest->phone}}"
-                      >Detail</a>
+                <tr>
+                    <th scope="row">{{$loop->iteration}}</th>
+                    <td>{{$guest->created_at}}</td>
+                    <td>{{$guest->nama}}</td>
+                    <td>{{$guest->unit}}</td>
+                    <td>{{$guest->phone}}</td>
+                    <td>
+                      {{-- tombol detail --}}
+                        <a id="detail" class="btn btn-info" data-toggle="modal" data-target="#modal-detail"
+                        data-nama = "{{$guest->nama}}"
+                        data-unit = "{{$guest->unit}}"
+                        data-tanggal = "{{$guest->created_at}}"
+                        data-description = "{{$guest->description}}"
+                        data-nip = "{{$guest->nip}}"
+                        data-phone = "{{$guest->phone}}"
+                        ><i class="fas fa-eye"></i></a>
 
-                      {{-- tombol edit --}}
-                      <a id="edit" class="btn btn-success edit" data-toggle="modal" data-target="#modal-edit"
-                      data-id = "{{ $guest->id }}"
-                      data-nama = "{{$guest->nama}}"
-                      data-unit = "{{$guest->unit}}"
-                      data-description = "{{$guest->description}}"
-                      data-nip = "{{$guest->nip}}"
-                      data-phone = "{{$guest->phone}}"
-                      >Edit</a>
+                        {{-- tombol edit --}}
+                        <a id="edit" class="btn btn-success edit" data-toggle="modal" data-target="#modal-edit"
+                        data-id = "{{ $guest->id }}"
+                        data-nama = "{{$guest->nama}}"
+                        data-unit = "{{$guest->unit}}"
+                        data-description = "{{$guest->description}}"
+                        data-nip = "{{$guest->nip}}"
+                        data-phone = "{{$guest->phone}}"
+                        ><i class="fas fa-edit"></i></a>
 
-                      {{-- tombol hapus --}}
-                      <form action="/{{$guest->id}}" method="post" class="d-inline" onsubmit="return confirm('Apakah Anda Yakin?')">
-                        @method('delete')
-                        @csrf
-                        <button type="submit" class="btn btn-danger tombol-hapus">Hapus</button>
-                      </form>
-                  </td>
-              </tr>
-
+                        {{-- tombol hapus --}}
+                        <form action="/{{$guest->id}}" method="post" class="d-inline" onsubmit="return confirm('Apakah Anda Yakin?')">
+                          @method('delete')
+                          @csrf
+                          <button type="submit" class="btn btn-danger tombol-hapus"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </td>
+                </tr>
+              @endforeach
               {{-- MODAL DETAIL --}}
               <div class="modal fade" id="modal-detail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -274,7 +274,6 @@
                 </div>
               </div>
               {{-- END MODAL EDIT DATA --}}
-              @endforeach
           </tbody>
       </table>
       </div>
