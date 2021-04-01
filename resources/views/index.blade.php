@@ -5,17 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"></script>
+    <link rel="stylesheet" href="{{asset('/bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('/datatables/1.10.24/css/dataTables.bootstrap4.min.css')}}">
+    <script src="{{asset('/js/jquery-3.5.1.slim.min.js')}}"></script>
+    <script src="{{asset('/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('/datatables/1.10.24/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('/datatables/1.10.24/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('/fontawesome/all.min.js')}}"></script>
+    
     <style>
       body {
         background-image: url("{{asset('/img/symphony.png')}}");
@@ -29,8 +26,10 @@
     <div class="row">
       <div class="col-12">
         <h1 class="mt-3 text-center">Daftar Tamu UPT TIK UNS</h1>
-        <a class="btn btn-primary my-3" data-toggle="modal" data-target="#modal-tambah"><i class="fas fa-user-plus"></i></a>
-        <a href="{{url('/export-data')}}" class="btn btn-warning"><i class="fas fa-file-export"></i></a>
+        <div class="text-center">
+          <a class="btn btn-lg btn-primary my-3" data-toggle="modal" data-target="#modal-tambah"><i class="fas fa-user-plus"></i> Tambah Tamu</a>
+        </div>
+        <a href="{{url('/export-data')}}" class="btn btn-warning mb-2"><i class="fas fa-file-export"></i> Ekspor Data Tamu</a>
         {{-- MODAL TAMBAH DATA --}}
         <div class="modal fade" id="modal-tambah" tabindex="-1" aria-labelledby="tambahModalLabel" aria-hidden="true">
           <div class="modal-dialog">
